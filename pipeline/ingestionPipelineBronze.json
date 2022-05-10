@@ -40,7 +40,10 @@
 				"inputs": [
 					{
 						"referenceName": "MySqlCarlocaLoc_cliente",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"tableName": "loc_cliente"
+						}
 					}
 				],
 				"outputs": [
