@@ -16,18 +16,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ParquetSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
+						"type": "MySqlSource"
 					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "ParquetIngestion",
+						"referenceName": "MySqlCarloca",
 						"type": "DatasetReference"
 					}
 				]
