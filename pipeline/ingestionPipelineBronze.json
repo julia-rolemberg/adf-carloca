@@ -27,7 +27,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Parquet1",
+						"referenceName": "ParquetIngestion",
 						"type": "DatasetReference"
 					}
 				]
