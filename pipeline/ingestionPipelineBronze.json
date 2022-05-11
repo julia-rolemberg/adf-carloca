@@ -15,6 +15,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('LookupTableNames').output",
+						"type": "Expression"
+					},
 					"isSequential": true,
 					"activities": [
 						{
@@ -101,7 +105,10 @@
 					},
 					"dataset": {
 						"referenceName": "MySqlCarloca",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"tableName": "teste"
+						}
 					},
 					"firstRowOnly": false
 				}
