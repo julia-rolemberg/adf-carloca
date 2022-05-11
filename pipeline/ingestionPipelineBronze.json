@@ -5,7 +5,14 @@
 			{
 				"name": "CopySourceCarloca",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "ForEachTableInCarloca",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -57,8 +64,53 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "ForEachTableInCarloca",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('carloca_tables_array')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"carloca_tables_array": {
+				"type": "Array",
+				"defaultValue": [
+					"LOC_AGE_BCO",
+					"loc_Fone_Cliente",
+					"loc_agencia",
+					"loc_banco",
+					"loc_cargo",
+					"loc_chefe",
+					"loc_cidade",
+					"loc_cliente",
+					"loc_cor",
+					"loc_depto",
+					"loc_diretor",
+					"loc_estado",
+					"loc_fabricante",
+					"loc_funcionario",
+					"loc_gerente",
+					"loc_grupo",
+					"loc_item_locacao",
+					"loc_modelo",
+					"loc_operadora",
+					"loc_pedido_locacao",
+					"loc_presidente",
+					"loc_proprietario",
+					"loc_tp_automovel",
+					"loc_tp_cliente",
+					"loc_tp_combustivel",
+					"loc_veiculo"
+				]
+			}
+		},
 		"annotations": []
 	}
 }
