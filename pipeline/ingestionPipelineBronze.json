@@ -121,7 +121,15 @@
 							"outputs": [
 								{
 									"referenceName": "ParquetIngestion",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"container": "bronze",
+										"folder": "carloca",
+										"file": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
