@@ -52,7 +52,13 @@
 							"inputs": [
 								{
 									"referenceName": "MySqlCarloca",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"tableName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
