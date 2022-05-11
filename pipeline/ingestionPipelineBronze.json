@@ -74,7 +74,8 @@
 					"items": {
 						"value": "@variables('carloca_tables_array')",
 						"type": "Expression"
-					}
+					},
+					"isSequential": true
 				}
 			}
 		],
