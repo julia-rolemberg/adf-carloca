@@ -5,13 +5,16 @@
 			{
 				"name": "ForEachTableInCarloca",
 				"type": "ForEach",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "LookupTableNames",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@variables('carloca_tables_array')",
-						"type": "Expression"
-					},
 					"isSequential": true,
 					"activities": [
 						{
@@ -93,12 +96,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "MySqlSource"
+						"type": "MySqlSource",
+						"query": "SELECT table_name FROM information_schema.tables\nWHERE table_schema = 'carloca';"
 					},
 					"dataset": {
 						"referenceName": "MySqlCarloca",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
