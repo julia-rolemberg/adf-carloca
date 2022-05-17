@@ -5,11 +5,6 @@
 			"referenceName": "MySqlCarlocaLinkedService",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"tableName": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "MySqlTable",
 		"schema": [],
