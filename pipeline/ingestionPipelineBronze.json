@@ -99,10 +99,7 @@
 					},
 					"dataset": {
 						"referenceName": "MySqlCarloca",
-						"type": "DatasetReference",
-						"parameters": {
-							"tableName": "teste"
-						}
+						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
 				}
