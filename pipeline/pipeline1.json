@@ -20,8 +20,11 @@
 						"query": "SELECT table_name FROM information_schema.tables\nWHERE table_schema = 'carloca';"
 					},
 					"dataset": {
-						"referenceName": "MySqlCarloca",
-						"type": "DatasetReference"
+						"referenceName": "MySqlCarloca01",
+						"type": "DatasetReference",
+						"parameters": {
+							"tableName": "teste"
+						}
 					}
 				}
 			},
