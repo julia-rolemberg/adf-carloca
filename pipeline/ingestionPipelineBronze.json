@@ -58,8 +58,14 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "MySqlCarloca",
-									"type": "DatasetReference"
+									"referenceName": "MySqlCarloca01",
+									"type": "DatasetReference",
+									"parameters": {
+										"tableName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
@@ -70,7 +76,7 @@
 										"container": "bronze",
 										"folder": "carloca",
 										"file": {
-											"value": "@item()",
+											"value": "@concat(item(), '.parquet')",
 											"type": "Expression"
 										}
 									}
