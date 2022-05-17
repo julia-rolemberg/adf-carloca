@@ -1,0 +1,82 @@
+{
+	"name": "ingestionMock",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "[\"LOC_AGE_BCO\", \"loc_Fone_Cliente\",\n\"loc_agencia\",\n\"loc_banco\",\"loc_cargo\",\"loc_chefe\", \"loc_cidade\",\"loc_cliente\",\"loc_cor\",\"loc_depto\",\"loc_diretor\",\"loc_estado\",\"loc_fabricante\",\"loc_funcionario\",\"loc_gerente\",\"loc_grupo\",\"loc_item_locacao\",\"loc_modelo\",\"loc_operadora\",\"loc_pedido_locacao\",\"loc_presidente\",\"loc_proprietario\",\"loc_tp_automovel\",\"loc_tp_cliente\",\"loc_tp_combustivel\",\"loc_veiculo\"]",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "MySqlSource"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "MySqlCarloca01",
+									"type": "DatasetReference",
+									"parameters": {
+										"tableName": "item()"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ParquetIngestion",
+									"type": "DatasetReference",
+									"parameters": {
+										"container": "bronze",
+										"folder": "carloca",
+										"file": {
+											"value": "@concat(item(), '.parquet')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"annotations": []
+	}
+}
