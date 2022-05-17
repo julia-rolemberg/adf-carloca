@@ -54,7 +54,10 @@
 									"referenceName": "MySqlCarloca01",
 									"type": "DatasetReference",
 									"parameters": {
-										"tableName": "item()"
+										"tableName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
 									}
 								}
 							],
