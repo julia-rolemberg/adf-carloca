@@ -2,7 +2,7 @@
 	"name": "SqlServerDatabase",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServerLinkedService",
+			"referenceName": "SqlServer1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
