@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "[\"LOC_AGE_BCO\", \"loc_Fone_Cliente\",\n\"loc_agencia\",\n\"loc_banco\",\"loc_cargo\",\"loc_chefe\", \"loc_cidade\",\"loc_cliente\",\"loc_cor\",\"loc_depto\",\"loc_diretor\",\"loc_estado\",\"loc_fabricante\",\"loc_funcionario\",\"loc_gerente\",\"loc_grupo\",\"loc_item_locacao\",\"loc_modelo\",\"loc_operadora\",\"loc_pedido_locacao\",\"loc_presidente\",\"loc_proprietario\",\"loc_tp_automovel\",\"loc_tp_cliente\",\"loc_tp_combustivel\",\"loc_veiculo\"]",
+						"value": "@pipeline().parameters.tables",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -51,7 +51,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "MySqlCarloca01",
+									"referenceName": "MySqlCarloca",
 									"type": "DatasetReference",
 									"parameters": {
 										"tableName": {
@@ -80,6 +80,39 @@
 				}
 			}
 		],
+		"parameters": {
+			"tables": {
+				"type": "array",
+				"defaultValue": [
+					"LOC_AGE_BCO",
+					"loc_Fone_Cliente",
+					"loc_agencia",
+					"loc_banco",
+					"loc_cargo",
+					"loc_chefe",
+					"loc_cidade",
+					"loc_cliente",
+					"loc_cor",
+					"loc_depto",
+					"loc_diretor",
+					"loc_estado",
+					"loc_fabricante",
+					"loc_funcionario",
+					"loc_gerente",
+					"loc_grupo",
+					"loc_item_locacao",
+					"loc_modelo",
+					"loc_operadora",
+					"loc_pedido_locacao",
+					"loc_presidente",
+					"loc_proprietario",
+					"loc_tp_automovel",
+					"loc_tp_cliente",
+					"loc_tp_combustivel",
+					"loc_veiculo"
+				]
+			}
+		},
 		"annotations": []
 	}
 }
