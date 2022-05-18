@@ -8,6 +8,10 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.tables",
+						"type": "Expression"
+					},
 					"isSequential": true,
 					"activities": [
 						{
@@ -30,6 +34,20 @@
 				}
 			}
 		],
+		"parameters": {
+			"tables": {
+				"type": "array",
+				"defaultValue": [
+					"dbo.BaseLocations",
+					"dbo.Quadricula",
+					"dbo.RequestLocation",
+					"dbo.ResponseError",
+					"dbo.ResponsePrice",
+					"dbo.ResponseTime",
+					"dbo.__EFMigrationsHistory"
+				]
+			}
+		},
 		"annotations": []
 	}
 }
