@@ -6,37 +6,64 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ParquetIngestion",
+						"referenceName": "Loc_Cliente",
 						"type": "DatasetReference"
 					},
 					"name": "loccliente"
 				},
 				{
 					"dataset": {
-						"referenceName": "ParquetIngestion",
+						"referenceName": "Loc_tp_cliente",
 						"type": "DatasetReference"
 					},
 					"name": "loctpcliente"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ParquetIngestion",
+						"type": "DatasetReference"
+					},
+					"name": "sinkSilver"
+				}
+			],
 			"transformations": [
 				{
 					"name": "join1"
 				}
 			],
 			"scriptLines": [
-				"source(allowSchemaDrift: false,",
+				"source(output(",
+				"          Cd_cliente as integer,",
+				"          Nm_Cliente as string,",
+				"          Cd_Tp_Cliente as integer,",
+				"          Nr_Estrelas as integer,",
+				"          Nr_Habilitacao as integer",
+				"     ),",
+				"     allowSchemaDrift: false,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> loccliente",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          cd_Tp_Cliente as integer,",
+				"          Nm_Tp_Cliente as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> loctpcliente",
-				"loccliente, loctpcliente join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
-				"     joinType:'outer',",
-				"     broadcast: 'auto')~> join1"
+				"loccliente, loctpcliente join(loccliente@Cd_Tp_Cliente == loctpcliente@cd_Tp_Cliente,",
+				"     joinType:'left',",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkSilver"
 			]
 		}
 	}

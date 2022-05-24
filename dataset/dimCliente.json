@@ -1,0 +1,21 @@
+{
+	"name": "dimCliente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dimCliente.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
