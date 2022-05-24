@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ParquetIngestion",
+						"referenceName": "dimCliente",
 						"type": "DatasetReference"
 					},
 					"name": "sinkSilver"
