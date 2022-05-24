@@ -1,0 +1,43 @@
+{
+	"name": "dataflowJoinDWCarloca",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ParquetIngestion",
+						"type": "DatasetReference"
+					},
+					"name": "loccliente"
+				},
+				{
+					"dataset": {
+						"referenceName": "ParquetIngestion",
+						"type": "DatasetReference"
+					},
+					"name": "loctpcliente"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> loccliente",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> loctpcliente",
+				"loccliente, loctpcliente join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'outer',",
+				"     broadcast: 'auto')~> join1"
+			]
+		}
+	}
+}
