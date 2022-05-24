@@ -1,0 +1,34 @@
+{
+	"name": "Loc_agencia",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "loc_agencia.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "cd_Agencia",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Agencia",
+				"type": "UTF8"
+			},
+			{
+				"name": "cd_Cidade",
+				"type": "INT32"
+			}
+		]
+	}
+}

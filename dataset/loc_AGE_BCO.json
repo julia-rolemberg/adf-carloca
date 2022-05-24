@@ -1,0 +1,34 @@
+{
+	"name": "loc_AGE_BCO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "LOC_AGE_BCO.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "cd_agencia",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Agencia",
+				"type": "UTF8"
+			},
+			{
+				"name": "cd_banco",
+				"type": "INT32"
+			}
+		]
+	}
+}
