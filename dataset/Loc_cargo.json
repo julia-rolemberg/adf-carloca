@@ -1,0 +1,30 @@
+{
+	"name": "Loc_cargo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "loc_cargo.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Cd_Cargo",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Cargo",
+				"type": "UTF8"
+			}
+		]
+	}
+}
