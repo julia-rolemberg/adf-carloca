@@ -1,0 +1,30 @@
+{
+	"name": "Loc_tp_cliente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "loc_tp_cliente.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "cd_Tp_Cliente",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Tp_Cliente",
+				"type": "UTF8"
+			}
+		]
+	}
+}
