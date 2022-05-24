@@ -1,0 +1,30 @@
+{
+	"name": "Loc_grupo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "loc_grupo.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "cd_Grupo",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Grupo",
+				"type": "UTF8"
+			}
+		]
+	}
+}
