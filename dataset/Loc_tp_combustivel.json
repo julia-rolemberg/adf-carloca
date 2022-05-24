@@ -1,0 +1,30 @@
+{
+	"name": "Loc_tp_combustivel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "loc_tp_combustivel.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "cd_Tp_Combustivel",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Tp_Combustivelcol",
+				"type": "UTF8"
+			}
+		]
+	}
+}
