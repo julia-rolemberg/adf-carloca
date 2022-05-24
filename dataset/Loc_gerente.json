@@ -1,0 +1,54 @@
+{
+	"name": "Loc_gerente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "loc_gerente.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Cd_Func",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Func",
+				"type": "UTF8"
+			},
+			{
+				"name": "Dt_Inicio",
+				"type": "INT96"
+			},
+			{
+				"name": "Cd_Gerente",
+				"type": "INT32"
+			},
+			{
+				"name": "Nr_CPF",
+				"type": "INT32"
+			},
+			{
+				"name": "Vl_Salario",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "Vl_Perc_Comissao",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			}
+		]
+	}
+}
