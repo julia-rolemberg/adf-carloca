@@ -1,0 +1,42 @@
+{
+	"name": "Loc_Cliente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "loc_cliente.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Cd_cliente",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Cliente",
+				"type": "UTF8"
+			},
+			{
+				"name": "Cd_Tp_Cliente",
+				"type": "INT32"
+			},
+			{
+				"name": "Nr_Estrelas",
+				"type": "INT32"
+			},
+			{
+				"name": "Nr_Habilitacao",
+				"type": "INT32"
+			}
+		]
+	}
+}
