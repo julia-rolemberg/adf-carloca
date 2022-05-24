@@ -1,0 +1,30 @@
+{
+	"name": "Loc_fabricante",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "loc_fabricante.parquet",
+				"folderPath": "carloca",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "cd_Fabricante",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Fabricante",
+				"type": "UTF8"
+			}
+		]
+	}
+}
