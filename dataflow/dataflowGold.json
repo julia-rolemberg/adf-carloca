@@ -40,13 +40,27 @@
 					"name": "ftLocacao"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "fatoLocacao",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "locveiculo"
 				},
 				{
 					"name": "loccliente"
+				},
+				{
+					"name": "locfuncionario"
+				},
+				{
+					"name": "locbanco"
 				}
 			],
 			"scriptLines": [
@@ -154,7 +168,21 @@
 				"     broadcast: 'auto')~> locveiculo",
 				"locveiculo, dimCliente join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
 				"     joinType:'inner',",
-				"     broadcast: 'auto')~> loccliente"
+				"     broadcast: 'auto')~> loccliente",
+				"loccliente, dimFuncionario join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> locfuncionario",
+				"locfuncionario, dimBanco join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> locbanco",
+				"locbanco sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}

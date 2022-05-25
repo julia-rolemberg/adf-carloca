@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "carloca/ftLocacao",
-				"fileSystem": "silver"
+				"folderPath": "dw_carloca/ftLocacao",
+				"fileSystem": "gold"
 			},
 			"compressionCodec": "snappy"
 		},
