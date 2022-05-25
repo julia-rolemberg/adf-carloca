@@ -136,6 +136,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "locveiculo"
+				},
+				{
+					"dataset": {
+						"referenceName": "locitemlocacao",
+						"type": "DatasetReference"
+					},
+					"name": "locitemlocacao"
 				}
 			],
 			"sinks": [
@@ -213,6 +220,9 @@
 				},
 				{
 					"name": "veiculocor"
+				},
+				{
+					"name": "veiculoitem"
 				}
 			],
 			"scriptLines": [
@@ -400,6 +410,16 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> locveiculo",
+				"source(output(",
+				"          Nr_Pedido as integer,",
+				"          Nr_Placa as string,",
+				"          Vl_Diaria as decimal(38,18),",
+				"          Vl_Diaria_Calc as decimal(38,18)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locitemlocacao",
 				"loccliente, loctpcliente join(loccliente@Cd_Tp_Cliente == loctpcliente@cd_Tp_Cliente,",
 				"     joinType:'left',",
 				"     broadcast: 'auto')~> join1",
@@ -445,6 +465,9 @@
 				"veiculoproprietario, loccor join(locveiculo@cd_cor == loccor@cd_Cor,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> veiculocor",
+				"veiculocor, locitemlocacao join(locveiculo@Nr_Placa == locitemlocacao@Nr_Placa,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> veiculoitem",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
@@ -469,7 +492,7 @@
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink2",
-				"veiculocor sink(allowSchemaDrift: true,",
+				"veiculoitem sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
 				"     umask: 0022,",
