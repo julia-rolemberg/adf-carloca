@@ -33,6 +33,34 @@
 					"name": "locAGEBCO"
 				},
 				{
+					"dataset": {
+						"referenceName": "Loc_funcionario",
+						"type": "DatasetReference"
+					},
+					"name": "locfuncionario"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_depto",
+						"type": "DatasetReference"
+					},
+					"name": "locdepto"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_cargo",
+						"type": "DatasetReference"
+					},
+					"name": "loccargo"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_gerente",
+						"type": "DatasetReference"
+					},
+					"name": "locgerente"
+				},
+				{
 					"name": "source1"
 				}
 			],
@@ -50,6 +78,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "dimFuncionario",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
 				}
 			],
 			"transformations": [
@@ -58,6 +93,15 @@
 				},
 				{
 					"name": "join2"
+				},
+				{
+					"name": "joinfuncdepto"
+				},
+				{
+					"name": "funccargo"
+				},
+				{
+					"name": "funcgerente"
 				}
 			],
 			"scriptLines": [
@@ -98,6 +142,51 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> locAGEBCO",
+				"source(output(",
+				"          Cd_Func as integer,",
+				"          Nm_Func as string,",
+				"          Dt_Inicio as timestamp,",
+				"          Cd_Gerente as integer,",
+				"          Nr_CPF as integer,",
+				"          Vl_Salario as decimal(38,18),",
+				"          Vl_Perc_Comissao as decimal(38,18),",
+				"          Cd_Depto as integer,",
+				"          Cd_Cargo as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locfuncionario",
+				"source(output(",
+				"          Cd_Depto as integer,",
+				"          Nm_Depto as string,",
+				"          Vl_Orc_Depto as decimal(38,18)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locdepto",
+				"source(output(",
+				"          Cd_Cargo as integer,",
+				"          Nm_Cargo as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> loccargo",
+				"source(output(",
+				"          Cd_Func as integer,",
+				"          Nm_Func as string,",
+				"          Dt_Inicio as timestamp,",
+				"          Cd_Gerente as integer,",
+				"          Nr_CPF as integer,",
+				"          Vl_Salario as decimal(38,18),",
+				"          Vl_Perc_Comissao as decimal(38,18)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locgerente",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false) ~> source1",
 				"loccliente, loctpcliente join(loccliente@Cd_Tp_Cliente == loctpcliente@cd_Tp_Cliente,",
@@ -106,6 +195,15 @@
 				"locbanco, locAGEBCO join(locbanco@cd_Banco == locAGEBCO@cd_banco,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> join2",
+				"funccargo, locdepto join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> joinfuncdepto",
+				"funcgerente, loccargo join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> funccargo",
+				"locfuncionario, locgerente join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'left',",
+				"     broadcast: 'auto')~> funcgerente",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
@@ -121,7 +219,15 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"joinfuncdepto sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2"
 			]
 		}
 	}
