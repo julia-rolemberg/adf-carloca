@@ -158,28 +158,28 @@
 						"referenceName": "silverDimCliente",
 						"type": "DatasetReference"
 					},
-					"name": "sinkSilver"
+					"name": "sinkDimCliente"
 				},
 				{
 					"dataset": {
 						"referenceName": "silverDimBanco",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sinkDimBanco"
 				},
 				{
 					"dataset": {
 						"referenceName": "silverDimFuncionario",
 						"type": "DatasetReference"
 					},
-					"name": "sink2"
+					"name": "sinkDimFuncionario"
 				},
 				{
 					"dataset": {
 						"referenceName": "silverDimVeiculo",
 						"type": "DatasetReference"
 					},
-					"name": "sink3"
+					"name": "sinkDimVeiculo"
 				}
 			],
 			"transformations": [
@@ -509,7 +509,7 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkSilver",
+				"     skipDuplicateMapOutputs: true) ~> sinkDimCliente",
 				"agenciacidade sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -532,7 +532,7 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"     skipDuplicateMapOutputs: true) ~> sinkDimBanco",
 				"joinfuncdepto sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -554,7 +554,7 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2",
+				"     skipDuplicateMapOutputs: true) ~> sinkDimFuncionario",
 				"veiculoitem sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -589,7 +589,7 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink3"
+				"     skipDuplicateMapOutputs: true) ~> sinkDimVeiculo"
 			]
 		}
 	}
