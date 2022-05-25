@@ -61,7 +61,25 @@
 					"name": "locgerente"
 				},
 				{
-					"name": "source1"
+					"dataset": {
+						"referenceName": "Loc_agencia",
+						"type": "DatasetReference"
+					},
+					"name": "locagencia"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_cidade",
+						"type": "DatasetReference"
+					},
+					"name": "loccidade"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_estado",
+						"type": "DatasetReference"
+					},
+					"name": "locestado"
 				}
 			],
 			"sinks": [
@@ -102,6 +120,12 @@
 				},
 				{
 					"name": "funcgerente"
+				},
+				{
+					"name": "bancoagencia"
+				},
+				{
+					"name": "join3"
 				}
 			],
 			"scriptLines": [
@@ -187,8 +211,33 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> locgerente",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source1",
+				"source(output(",
+				"          cd_Agencia as integer,",
+				"          Nm_Agencia as string,",
+				"          cd_Cidade as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locagencia",
+				"source(output(",
+				"          Cd_Cidade as integer,",
+				"          Nm_Cidade as string,",
+				"          Cd_Estado as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> loccidade",
+				"source(output(",
+				"          Cd_Estado as integer,",
+				"          Nm_Estado as string,",
+				"          Sigla_Estado as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locestado",
 				"loccliente, loctpcliente join(loccliente@Cd_Tp_Cliente == loctpcliente@cd_Tp_Cliente,",
 				"     joinType:'left',",
 				"     broadcast: 'auto')~> join1",
@@ -204,6 +253,12 @@
 				"locfuncionario, locgerente join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
 				"     joinType:'left',",
 				"     broadcast: 'auto')~> funcgerente",
+				"join2, locagencia join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> bancoagencia",
+				"loccidade join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> join3",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
@@ -212,7 +267,7 @@
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sinkSilver",
-				"join2 sink(allowSchemaDrift: true,",
+				"bancoagencia sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
 				"     umask: 0022,",
