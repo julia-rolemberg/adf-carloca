@@ -1,18 +1,81 @@
 {
-	"name": "dataflowCreateFato",
+	"name": "dataflowGold",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
 				{
-					"name": "source1"
+					"dataset": {
+						"referenceName": "dimCliente",
+						"type": "DatasetReference"
+					},
+					"name": "dimCliente"
+				},
+				{
+					"dataset": {
+						"referenceName": "dimFuncionario",
+						"type": "DatasetReference"
+					},
+					"name": "dimFuncionario"
+				},
+				{
+					"dataset": {
+						"referenceName": "dimBanco",
+						"type": "DatasetReference"
+					},
+					"name": "dimBanco"
+				},
+				{
+					"dataset": {
+						"referenceName": "dimVeiculo",
+						"type": "DatasetReference"
+					},
+					"name": "dimVeiculo"
+				},
+				{
+					"dataset": {
+						"referenceName": "fatoLocacao",
+						"type": "DatasetReference"
+					},
+					"name": "ftLocacao"
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "locveiculo"
+				},
+				{
+					"name": "loccliente"
+				}
+			],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source1"
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> dimCliente",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> dimFuncionario",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> dimBanco",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> dimVeiculo",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> ftLocacao",
+				"ftLocacao, dimVeiculo join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> locveiculo",
+				"locveiculo, dimCliente join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> loccliente"
 			]
 		}
 	}
