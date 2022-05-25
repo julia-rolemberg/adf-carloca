@@ -161,6 +161,10 @@
 					"name": "sink2"
 				},
 				{
+					"dataset": {
+						"referenceName": "dimVeiculo",
+						"type": "DatasetReference"
+					},
 					"name": "sink3"
 				}
 			],
@@ -467,6 +471,10 @@
 				"     skipDuplicateMapOutputs: true) ~> sink2",
 				"veiculocor sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink3"
 			]
