@@ -46,7 +46,7 @@
 						"referenceName": "fatoLocacao",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sinkFato"
 				}
 			],
 			"transformations": [
@@ -60,7 +60,7 @@
 					"name": "locbanco"
 				},
 				{
-					"name": "locveiculo"
+					"name": "join1"
 				}
 			],
 			"scriptLines": [
@@ -139,7 +139,9 @@
 				"          Nm_Proprietario as string,",
 				"          Nr_CPF as integer,",
 				"          cd_Cor as integer,",
-				"          Desc_Cor as string",
+				"          Desc_Cor as string,",
+				"          Nr_Pedido as integer,",
+				"          Vl_Diaria_Calc as decimal(38,18)",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -172,17 +174,17 @@
 				"locfuncionario, dimBanco join(ftLocacao@Cd_Agencia == dimBanco@cd_agencia,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> locbanco",
-				"locbanco, dimVeiculo join(Nr_Pedido == Nr_Placa,",
+				"locbanco, dimVeiculo join(ftLocacao@Nr_Pedido == dimVeiculo@Nr_Pedido,",
 				"     joinType:'inner',",
-				"     broadcast: 'auto')~> locveiculo",
-				"locveiculo sink(allowSchemaDrift: true,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> sinkFato"
 			]
 		}
 	}

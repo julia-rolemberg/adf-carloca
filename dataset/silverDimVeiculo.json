@@ -117,6 +117,16 @@
 			{
 				"name": "Desc_Cor",
 				"type": "UTF8"
+			},
+			{
+				"name": "Nr_Pedido",
+				"type": "INT32"
+			},
+			{
+				"name": "Vl_Diaria_Calc",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
 			}
 		]
 	}
