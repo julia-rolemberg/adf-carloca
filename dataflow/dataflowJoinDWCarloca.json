@@ -17,6 +17,20 @@
 						"type": "DatasetReference"
 					},
 					"name": "loctpcliente"
+				},
+				{
+					"dataset": {
+						"referenceName": "loc_banco",
+						"type": "DatasetReference"
+					},
+					"name": "locbanco"
+				},
+				{
+					"dataset": {
+						"referenceName": "loc_AGE_BCO",
+						"type": "DatasetReference"
+					},
+					"name": "locAGEBCO"
 				}
 			],
 			"sinks": [
@@ -26,11 +40,21 @@
 						"type": "DatasetReference"
 					},
 					"name": "sinkSilver"
+				},
+				{
+					"dataset": {
+						"referenceName": "dimBanco",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
 				}
 			],
 			"transformations": [
 				{
 					"name": "join1"
+				},
+				{
+					"name": "join2"
 				}
 			],
 			"scriptLines": [
@@ -53,9 +77,30 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> loctpcliente",
+				"source(output(",
+				"          cd_Banco as integer,",
+				"          Nm_Banco as string,",
+				"          url as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locbanco",
+				"source(output(",
+				"          cd_agencia as integer,",
+				"          Nm_Agencia as string,",
+				"          cd_banco as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locAGEBCO",
 				"loccliente, loctpcliente join(loccliente@Cd_Tp_Cliente == loctpcliente@cd_Tp_Cliente,",
 				"     joinType:'left',",
 				"     broadcast: 'auto')~> join1",
+				"locbanco, locAGEBCO join(locbanco@cd_Banco == locAGEBCO@cd_banco,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> join2",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
@@ -63,7 +108,15 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkSilver"
+				"     skipDuplicateMapOutputs: true) ~> sinkSilver",
+				"join2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
