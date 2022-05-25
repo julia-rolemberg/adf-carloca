@@ -197,6 +197,15 @@
 				},
 				{
 					"name": "veiculoTpCombustivel"
+				},
+				{
+					"name": "veiculogrupo"
+				},
+				{
+					"name": "veiculoproprietario"
+				},
+				{
+					"name": "veiculocor"
 				}
 			],
 			"scriptLines": [
@@ -420,6 +429,15 @@
 				"veiculoTpAuto, loctpcombustivel join(Tp_Combustivel == cd_Tp_Combustivel,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> veiculoTpCombustivel",
+				"veiculoTpCombustivel, locgrupo join(locveiculo@cd_grupo == locgrupo@cd_Grupo,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> veiculogrupo",
+				"veiculogrupo, locproprietario join(locveiculo@Cd_Proprietario == locproprietario@cd_proprietario,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> veiculoproprietario",
+				"veiculoproprietario, loccor join(locveiculo@cd_cor == loccor@cd_Cor,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> veiculocor",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
