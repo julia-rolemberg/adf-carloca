@@ -80,6 +80,41 @@
 						"type": "DatasetReference"
 					},
 					"name": "locestado"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_tp_automovel",
+						"type": "DatasetReference"
+					},
+					"name": "locTpAutomovel"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_tp_combustivel",
+						"type": "DatasetReference"
+					},
+					"name": "loctpcombustivel"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_cor",
+						"type": "DatasetReference"
+					},
+					"name": "loccor"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_proprietario",
+						"type": "DatasetReference"
+					},
+					"name": "locproprietario"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_modelo",
+						"type": "DatasetReference"
+					},
+					"name": "locmodelo"
 				}
 			],
 			"sinks": [
@@ -241,6 +276,48 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> locestado",
+				"source(output(",
+				"          cd_Tp_Automovel as integer,",
+				"          Nm_Tp_Automovel as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locTpAutomovel",
+				"source(output(",
+				"          cd_Tp_Combustivel as integer,",
+				"          Nm_Tp_Combustivelcol as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> loctpcombustivel",
+				"source(output(",
+				"          cd_Cor as integer,",
+				"          Desc_Cor as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> loccor",
+				"source(output(",
+				"          cd_proprietario as integer,",
+				"          Nm_Proprietario as string,",
+				"          Nr_CPF as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locproprietario",
+				"source(output(",
+				"          cd_Modelo as integer,",
+				"          Nm_Modelo as string,",
+				"          cd_Fabricante as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locmodelo",
 				"loccliente, loctpcliente join(loccliente@Cd_Tp_Cliente == loctpcliente@cd_Tp_Cliente,",
 				"     joinType:'left',",
 				"     broadcast: 'auto')~> join1",
