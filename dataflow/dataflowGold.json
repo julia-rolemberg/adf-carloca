@@ -51,9 +51,6 @@
 			],
 			"transformations": [
 				{
-					"name": "locveiculo"
-				},
-				{
 					"name": "loccliente"
 				},
 				{
@@ -61,6 +58,9 @@
 				},
 				{
 					"name": "locbanco"
+				},
+				{
+					"name": "locveiculo"
 				}
 			],
 			"scriptLines": [
@@ -163,19 +163,19 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> ftLocacao",
-				"ftLocacao, dimVeiculo join(Nr_Pedido == ERROR_FUNCTION(''),",
-				"     joinType:'inner',",
-				"     broadcast: 'auto')~> locveiculo",
-				"locveiculo, dimCliente join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"ftLocacao, dimCliente join(ftLocacao@Cd_Cliente == dimCliente@Cd_cliente,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> loccliente",
-				"loccliente, dimFuncionario join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"loccliente, dimFuncionario join(ftLocacao@Cd_Func == dimFuncionario@Cd_Func,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> locfuncionario",
-				"locfuncionario, dimBanco join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"locfuncionario, dimBanco join(ftLocacao@Cd_Agencia == dimBanco@cd_agencia,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> locbanco",
-				"locbanco sink(allowSchemaDrift: true,",
+				"locbanco, dimVeiculo join(Nr_Pedido == Nr_Placa,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> locveiculo",
+				"locveiculo sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
 				"     umask: 0022,",
