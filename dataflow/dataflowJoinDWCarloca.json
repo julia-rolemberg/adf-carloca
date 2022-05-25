@@ -115,6 +115,27 @@
 						"type": "DatasetReference"
 					},
 					"name": "locmodelo"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_fabricante",
+						"type": "DatasetReference"
+					},
+					"name": "locfabricante"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_grupo",
+						"type": "DatasetReference"
+					},
+					"name": "locgrupo"
+				},
+				{
+					"dataset": {
+						"referenceName": "Loc_veiculo",
+						"type": "DatasetReference"
+					},
+					"name": "locveiculo"
 				}
 			],
 			"sinks": [
@@ -164,6 +185,9 @@
 				},
 				{
 					"name": "agenciacidade"
+				},
+				{
+					"name": "modelofabricante"
 				}
 			],
 			"scriptLines": [
@@ -318,6 +342,39 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> locmodelo",
+				"source(output(",
+				"          cd_Fabricante as integer,",
+				"          Nm_Fabricante as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locfabricante",
+				"source(output(",
+				"          cd_Grupo as integer,",
+				"          Nm_Grupo as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locgrupo",
+				"source(output(",
+				"          Nr_Placa as string,",
+				"          Cd_Proprietario as integer,",
+				"          Nr_Chassis as string,",
+				"          Status as string,",
+				"          Km_Atual as integer,",
+				"          Tp_Automovel as integer,",
+				"          Tp_Combustivel as integer,",
+				"          cd_Modelo as integer,",
+				"          cd_cor as integer,",
+				"          cd_grupo as integer,",
+				"          Vl_Diaria as decimal(38,18)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> locveiculo",
 				"loccliente, loctpcliente join(loccliente@Cd_Tp_Cliente == loctpcliente@cd_Tp_Cliente,",
 				"     joinType:'left',",
 				"     broadcast: 'auto')~> join1",
@@ -342,6 +399,9 @@
 				"bancoagencia, cidadeestado join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> agenciacidade",
+				"locfabricante, locmodelo join(locfabricante@cd_Fabricante == locmodelo@cd_Fabricante,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> modelofabricante",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
