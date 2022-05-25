@@ -188,6 +188,9 @@
 				},
 				{
 					"name": "modelofabricante"
+				},
+				{
+					"name": "veiculomodelofabricante"
 				}
 			],
 			"scriptLines": [
@@ -402,6 +405,9 @@
 				"locfabricante, locmodelo join(locfabricante@cd_Fabricante == locmodelo@cd_Fabricante,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> modelofabricante",
+				"locveiculo, modelofabricante join(locveiculo@cd_Modelo == locmodelo@cd_Modelo,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> veiculomodelofabricante",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
