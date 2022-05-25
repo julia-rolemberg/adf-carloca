@@ -125,7 +125,10 @@
 					"name": "bancoagencia"
 				},
 				{
-					"name": "join3"
+					"name": "cidadeestado"
+				},
+				{
+					"name": "agenciacidade"
 				}
 			],
 			"scriptLines": [
@@ -256,9 +259,12 @@
 				"join2, locagencia join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> bancoagencia",
-				"loccidade join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"loccidade, locestado join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
 				"     joinType:'inner',",
-				"     broadcast: 'auto')~> join3",
+				"     broadcast: 'auto')~> cidadeestado",
+				"bancoagencia, cidadeestado join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> agenciacidade",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
@@ -267,7 +273,7 @@
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sinkSilver",
-				"bancoagencia sink(allowSchemaDrift: true,",
+				"agenciacidade sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
 				"     umask: 0022,",
