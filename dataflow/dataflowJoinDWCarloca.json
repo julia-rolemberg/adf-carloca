@@ -159,6 +159,9 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
+				},
+				{
+					"name": "sink3"
 				}
 			],
 			"transformations": [
@@ -461,7 +464,11 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2"
+				"     skipDuplicateMapOutputs: true) ~> sink2",
+				"veiculocor sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink3"
 			]
 		}
 	}
