@@ -194,6 +194,9 @@
 				},
 				{
 					"name": "veiculoTpAuto"
+				},
+				{
+					"name": "veiculoTpCombustivel"
 				}
 			],
 			"scriptLines": [
@@ -414,6 +417,9 @@
 				"veiculomodelofabricante, locTpAutomovel join(Tp_Automovel == cd_Tp_Automovel,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> veiculoTpAuto",
+				"veiculoTpAuto, loctpcombustivel join(Tp_Combustivel == cd_Tp_Combustivel,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> veiculoTpCombustivel",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
