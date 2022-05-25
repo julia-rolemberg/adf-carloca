@@ -3,18 +3,34 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Validation1",
-				"type": "Validation",
+				"name": "Copy data1",
+				"type": "Copy",
 				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataset": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
 						"referenceName": "dimCliente",
 						"type": "DatasetReference"
-					},
-					"timeout": "7.00:00:00",
-					"sleep": 10
-				}
+					}
+				]
 			}
 		],
 		"annotations": []

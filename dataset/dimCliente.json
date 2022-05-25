@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "dimCliente.parquet",
-				"folderPath": "carloca",
+				"folderPath": "carloca/dimCliente",
 				"fileSystem": "silver"
 			},
 			"compressionCodec": "snappy"
