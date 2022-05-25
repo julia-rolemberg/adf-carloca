@@ -1,0 +1,75 @@
+{
+	"name": "silverDimFuncionario",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "carloca/dimFuncionario",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Cd_Func",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Func",
+				"type": "UTF8"
+			},
+			{
+				"name": "Dt_Inicio",
+				"type": "INT96"
+			},
+			{
+				"name": "Cd_Gerente",
+				"type": "INT32"
+			},
+			{
+				"name": "Nr_CPF",
+				"type": "INT32"
+			},
+			{
+				"name": "Vl_Salario",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "Vl_Perc_Comissao",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "Cd_Depto",
+				"type": "INT32"
+			},
+			{
+				"name": "Cd_Cargo",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Cargo",
+				"type": "UTF8"
+			},
+			{
+				"name": "Nm_Depto",
+				"type": "UTF8"
+			},
+			{
+				"name": "Vl_Orc_Depto",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			}
+		]
+	}
+}

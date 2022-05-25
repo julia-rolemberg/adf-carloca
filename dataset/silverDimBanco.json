@@ -1,0 +1,73 @@
+{
+	"name": "silverDimBanco",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "carloca/dimBanco",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "cd_Banco",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Banco",
+				"type": "UTF8"
+			},
+			{
+				"name": "url",
+				"type": "UTF8"
+			},
+			{
+				"name": "cd_agencia",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Agencia",
+				"type": "UTF8"
+			},
+			{
+				"name": "cd_banco",
+				"type": "INT32"
+			},
+			{
+				"name": "cd_Agencia",
+				"type": "INT32"
+			},
+			{
+				"name": "cd_Cidade",
+				"type": "INT32"
+			},
+			{
+				"name": "Cd_Cidade",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Cidade",
+				"type": "UTF8"
+			},
+			{
+				"name": "Cd_Estado",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Estado",
+				"type": "UTF8"
+			},
+			{
+				"name": "Sigla_Estado",
+				"type": "UTF8"
+			}
+		]
+	}
+}

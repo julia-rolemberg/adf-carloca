@@ -1,0 +1,123 @@
+{
+	"name": "silverDimVeiculo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "carloca/dimVeiculo",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Nr_Placa",
+				"type": "UTF8"
+			},
+			{
+				"name": "Cd_Proprietario",
+				"type": "INT32"
+			},
+			{
+				"name": "Nr_Chassis",
+				"type": "UTF8"
+			},
+			{
+				"name": "Status",
+				"type": "UTF8"
+			},
+			{
+				"name": "Km_Atual",
+				"type": "INT32"
+			},
+			{
+				"name": "Tp_Automovel",
+				"type": "INT32"
+			},
+			{
+				"name": "Tp_Combustivel",
+				"type": "INT32"
+			},
+			{
+				"name": "cd_Modelo",
+				"type": "INT32"
+			},
+			{
+				"name": "cd_cor",
+				"type": "INT32"
+			},
+			{
+				"name": "cd_grupo",
+				"type": "INT32"
+			},
+			{
+				"name": "Vl_Diaria",
+				"type": "DECIMAL",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "cd_Fabricante",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Fabricante",
+				"type": "UTF8"
+			},
+			{
+				"name": "Nm_Modelo",
+				"type": "UTF8"
+			},
+			{
+				"name": "cd_Tp_Automovel",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Tp_Automovel",
+				"type": "UTF8"
+			},
+			{
+				"name": "cd_Tp_Combustivel",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Tp_Combustivelcol",
+				"type": "UTF8"
+			},
+			{
+				"name": "cd_Grupo",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Grupo",
+				"type": "UTF8"
+			},
+			{
+				"name": "cd_proprietario",
+				"type": "INT32"
+			},
+			{
+				"name": "Nm_Proprietario",
+				"type": "UTF8"
+			},
+			{
+				"name": "Nr_CPF",
+				"type": "INT32"
+			},
+			{
+				"name": "cd_Cor",
+				"type": "INT32"
+			},
+			{
+				"name": "Desc_Cor",
+				"type": "UTF8"
+			}
+		]
+	}
+}
