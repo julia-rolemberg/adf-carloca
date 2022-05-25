@@ -163,7 +163,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> ftLocacao",
-				"ftLocacao, dimVeiculo join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"ftLocacao, dimVeiculo join(Nr_Pedido == ERROR_FUNCTION(''),",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> locveiculo",
 				"locveiculo, dimCliente join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
