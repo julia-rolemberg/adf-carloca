@@ -143,9 +143,6 @@
 						"type": "DatasetReference"
 					},
 					"name": "locitemlocacao"
-				},
-				{
-					"name": "source1"
 				}
 			],
 			"sinks": [
@@ -423,8 +420,6 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> locitemlocacao",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source1",
 				"loccliente, loctpcliente join(loccliente@Cd_Tp_Cliente == loctpcliente@cd_Tp_Cliente,",
 				"     joinType:'left',",
 				"     broadcast: 'auto')~> join1",
