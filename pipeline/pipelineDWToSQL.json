@@ -40,7 +40,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "fatoLocacao",
+						"referenceName": "FtLocacaoGoldSRC",
 						"type": "DatasetReference"
 					}
 				],
