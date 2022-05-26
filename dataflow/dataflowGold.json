@@ -60,7 +60,7 @@
 					"name": "locbanco"
 				},
 				{
-					"name": "join1"
+					"name": "locveiculo"
 				}
 			],
 			"scriptLines": [
@@ -176,8 +176,8 @@
 				"     broadcast: 'auto')~> locbanco",
 				"locbanco, dimVeiculo join(ftLocacao@Nr_Pedido == dimVeiculo@Nr_Pedido,",
 				"     joinType:'inner',",
-				"     broadcast: 'auto')~> join1",
-				"join1 sink(allowSchemaDrift: true,",
+				"     broadcast: 'auto')~> locveiculo",
+				"locveiculo sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
 				"     umask: 0022,",
