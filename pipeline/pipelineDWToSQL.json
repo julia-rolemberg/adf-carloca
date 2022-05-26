@@ -1,0 +1,6 @@
+{
+	"name": "pipelineDWToSQL",
+	"properties": {
+		"annotations": []
+	}
+}
