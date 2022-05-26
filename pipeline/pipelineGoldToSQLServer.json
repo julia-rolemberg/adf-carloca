@@ -1,0 +1,6 @@
+{
+	"name": "pipelineGoldToSQLServer",
+	"properties": {
+		"annotations": []
+	}
+}
