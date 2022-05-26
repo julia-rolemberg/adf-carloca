@@ -6,7 +6,7 @@
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
 			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=dwcarloca01.database.windows.net;initial catalog=DW_carloca;user id=julia",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiZjlhOGFkNS01NGUwLTQzMTQtOTQ2Mi0wMjA5MmVkNzQwYmYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0M2Q2ZmFmNi1hNDQ5LTRlMTAtOWMzZS01NWU4ZmJlZDJmYjgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntime1",
