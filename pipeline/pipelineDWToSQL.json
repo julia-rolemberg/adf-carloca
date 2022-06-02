@@ -40,14 +40,17 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "FtLocacaoGoldSRC",
+						"referenceName": "dimClienteSilver",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"tableName": "dim_cliente"
+						}
 					}
 				]
 			}
