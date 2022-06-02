@@ -40,7 +40,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "FtLocacaoGoldSRC",
+						"referenceName": "dimClienteSilver",
 						"type": "DatasetReference"
 					}
 				],
