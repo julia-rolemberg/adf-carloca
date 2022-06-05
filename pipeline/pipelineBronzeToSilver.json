@@ -81,7 +81,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "fatoLocacao",
+						"referenceName": "locPedidoLocacaoSilver",
 						"type": "DatasetReference"
 					}
 				]
