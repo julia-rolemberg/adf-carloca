@@ -1,5 +1,5 @@
 {
-	"name": "pipelineSQLServer",
+	"name": "pipelineSQLServerTendencias",
 	"properties": {
 		"activities": [
 			{
